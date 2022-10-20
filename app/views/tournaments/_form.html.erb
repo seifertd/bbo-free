@@ -1,0 +1,18 @@
+<%= form_with(model: tournament, id: "#{dom_id(tournament)}_form") do |form| %>
+  <% if tournament.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
+      <ul>
+        <% tournament.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="flex items-stretch flex-grow">
+    <%= form.label :results, class: "sr-only" %>
+    <div class="min-w-full rounded-md sm:text-sm outline outline-dashed border-gray-300" id="results-drop" contenteditable="true">
+      <p>Paste tournament results here ...</p>
+    </div>
+  </div>
+<% end %>
