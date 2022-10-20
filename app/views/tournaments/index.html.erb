@@ -1,0 +1,57 @@
+
+<div class="min-w-full">
+  <h2>BBO Weekly Free Tournaments</h2>
+  <div class="min-w-full bg-gray-100 py-1 px-4 border border-gray-200 rounded shadow-sm">
+    <div class="py-1 px-4">
+      <%= render "form", tournament: Tournament.new %>
+    </div>
+  </div>
+  <div class="py-1 min-w-full">
+    <div class="shadow overflow-hidden rounded border-b border-gray-200 min-w-full">
+      <table class="min-w-full bg-white">
+        <thead class="bg-gray-800 text-white">
+          <tr>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Tournament ID
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Entries
+            </th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <%= render @tournaments %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+    <script>
+      var dropZone = document.getElementById("results-drop");
+      dropZone.addEventListener('paste', (event) => {
+        event.preventDefault();
+        let target = event.target;
+        if (target.tagName == "P") {
+          target = target.parentNode;
+        }
+        const clipboard_data = (event.clipboardData || window.clipboardData);
+        const text_paste_content = clipboard_data.getData('text/plain');
+        const html_paste_content = clipboard_data.getData('text/html');
+        let elem = target;
+        while (elem.parentNode.tagName != 'FORM') {
+          elem = elem.parentNode
+        }
+        const form = elem.parentNode;
+        Array.prototype.forEach.call(form.elements, (input) => {
+          if (input.name === 'tournament_results_html') {
+            input.parentNode.removeChild(input);
+          }
+        });
+        const hiddenInput = document.createElement("input");
+        hiddenInput.setAttribute("name", "tournament_results_html");
+        hiddenInput.setAttribute("value", html_paste_content);
+        hiddenInput.setAttribute("type", "hidden");
+        form.appendChild(hiddenInput);
+        form.submit();
+      });
+    </script>
