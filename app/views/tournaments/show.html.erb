@@ -1,0 +1,28 @@
+<div class="nin-w-full">
+  <h2>Tournament <%=@tournament.guid%> Entries</h2>
+  <div class="py-1 min-w-full">
+    <div class="shadow overflow-hidden rounded border-b border-gray-200 min-w-full">
+      <table class="min-w-full bg-white">
+        <thead class="bg-gray-800 text-white">
+          <tr>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Player
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Date
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Rank
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Score
+            </th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <%= render @tournament.entries %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
