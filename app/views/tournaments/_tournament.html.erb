@@ -1,6 +1,12 @@
 <tr>
   <td class="text-left py-3 px-4">
-    <%= link_to tournament.guid, tournament %>
+    <%= l tournament.tourney_date %>
+  </td>
+  <td class="text-left py-3 px-4">
+    <%= link_to tournament.short_guid, tournament %>
+  </td>
+  <td class="text-left py-3 px-4">
+    <%= tournament.name %>
   </td>
   <td class="text-left py-3 px-4">
     <%= tournament.entries.count %>

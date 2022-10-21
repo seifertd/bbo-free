@@ -3,7 +3,7 @@
     <%= board.number %>
   </td>
   <td class="text-left py-3 px-4">
-    <%= board.played_at %>
+    <%= l board.played_at %>
   </td>
   <td class="text-left py-3 px-4">
     <%= board.north %>
@@ -24,6 +24,6 @@
     <%= board.points %>
   </td>
   <td class="text-left py-3 px-4">
-    <%= board.score %>
+    <%= board.score.round(2) %>
   </td>
 </tr>

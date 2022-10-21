@@ -1,5 +1,5 @@
 <div class="nin-w-full">
-  <h2>Tournament <%=@tournament.guid%> Entries</h2>
+  <h2><%=@tournament.name%> (<%=@tournament.short_guid%>) Entries</h2>
   <div class="py-1 min-w-full">
     <div class="shadow overflow-hidden rounded border-b border-gray-200 min-w-full">
       <table class="min-w-full bg-white">
@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody class="text-gray-700">
-          <%= render @tournament.entries %>
+          <%= render @tournament.entries.order(score: :desc) %>
         </tbody>
       </table>
     </div>
