@@ -65,6 +65,7 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rvm"
   gem "capistrano-secrets-yml"
+  gem 'capistrano-passenger'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
