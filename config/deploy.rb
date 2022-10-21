@@ -5,7 +5,10 @@ set :application, "bbo-free"
 set :repo_url, "git@github.com:seifertd/bbo-free.git"
 
 # Default branch is :master
-ask :branch, 'main'
+set :branch, 'main'
+
+# rvm
+set :rvm_ruby_version, "ruby-3.1.1"
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
