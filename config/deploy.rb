@@ -10,6 +10,8 @@ set :branch, 'main'
 # rvm
 set :rvm_ruby_version, "ruby-3.1.1"
 
+set :log_level, :debug
+
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
 

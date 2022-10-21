@@ -1,1 +1,3 @@
-Faker::Config.locale = :en
+if Rail.env.test?
+  Faker::Config.locale = :en
+end
