@@ -36,5 +36,9 @@ class Tournament < ApplicationRecord
         end
       end
     end
+    entries.sort_by(&:score).reverse.each.with_index do |entry, rank|
+      entry.rank = rank + 1
+      entry.save!
+    end
   end
 end
