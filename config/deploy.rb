@@ -36,7 +36,7 @@ set :passenger_restart_with_touch, true
 append :linked_files, 'config/database.yml', 'config/master.key', 'config/secrets.yml', 'db/production.sqlite3'
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/assets"
 
 # Default value for default_env is {}
 set :default_env, { rvm_bin_path: "/usr/local/rvm/bin" }
