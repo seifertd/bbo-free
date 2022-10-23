@@ -1,4 +1,5 @@
 class TournamentsController < ApplicationController
+  protect_from_forgery except: :create
   def index
     @tournaments = Tournament.all.order(id: :desc)
   end
