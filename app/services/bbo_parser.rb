@@ -15,15 +15,19 @@ class BboParser
           player, player_guid = tourny_info.text.split(":").last.split("-")[0,2]
         elsif row_count == 2
           played_date = Date.parse(row.xpath("th").first.text)
-          tournament = Tournament.where(guid: tourney_guid).first_or_initialize do |tourney|
-            tourney.tourney_date = played_date.prev_occurring(:friday)
-          end
+          tournament = Tournament.where(guid: tourney_guid).first_or_initialize
           entry = tournament.entries.where(player: player).first_or_initialize
           entry.played_at = played_date
         elsif row.attr("class") == "tourneySummary"
           entry.rank = row.css("td.tourneyPlace").first.text.to_i
           entry.score = row.css("td.tourneyScore").first.text.to_f
           tournament.name = row.css("td.tourneyName a").first.text
+          if tournament.name.start_with? 'Weekly Free'
+            tourney.tourney_date =
+              played_date.friday? ? played_date : played_date.prev_occurring(:friday)
+          else
+            tourney.tourney_date = entry.played_at
+          end
         elsif row.attr("class") == "tourney"
           board_num = row.css("td.handnum").first.text.to_i
           board = entry.boards.where(number: board_num).first_or_initialize
