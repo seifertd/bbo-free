@@ -23,8 +23,8 @@ class BboParser
           entry.score = row.css("td.tourneyScore").first.text.to_f
           tournament.name = row.css("td.tourneyName a").first.text
           if tournament.name.start_with? 'Weekly Free'
-            tourney.tourney_date =
-              played_date.friday? ? played_date : played_date.prev_occurring(:friday)
+            tournament.tourney_date =
+              entry.played_at.friday? ? entry.played_at : entry.played_at.prev_occurring(:friday)
           else
             tourney.tourney_date = entry.played_at
           end
