@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+.hyperlink {
+  @apply text-blue-600
+}
+
+.hyperlink:hover {
+  @apply underline text-blue-800
+}
+
+.hyperlink:visited {
+  @apply text-purple-600
+}
 /*
 
 @layer components {
