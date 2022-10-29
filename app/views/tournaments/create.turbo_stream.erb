@@ -1,0 +1,6 @@
+<%= turbo_stream.replace 'notices' do %>
+  <%= render "/layouts/notices" %>
+<% end %>
+<%= turbo_stream.prepend 'tournaments' do %>
+  <%= render "tournament", tournament: @tournament %>
+<% end %>
