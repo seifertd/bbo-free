@@ -9,6 +9,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        'pulse-bg-once': 'pulse-bg-once 3s ease-in forwards'
+      },
+      keyframes: {
+        'pulse-bg-once': {
+          '0%': { backgroundColor: 'var(--tw-gradient-from)' },
+          '50%': { backgroundColor: 'var(--tw-gradient-to)' },
+          '100%': { backgroundColor: 'var(--tw-gradient-from)' }
+        }
+      },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
