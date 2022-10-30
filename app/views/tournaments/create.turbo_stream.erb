@@ -3,10 +3,10 @@
 <% end %>
 <% if @new_tourney -%>
   <%= turbo_stream.prepend 'tournaments' do %>
-    <%= render "tournament", tournament: @tournament %>
+    <%= render "tournament", tournament: @tournament, animate: true %>
   <% end %>
 <% else %>
   <%= turbo_stream.replace "#{dom_id(@tournament)}_row" do %>
-    <%= render "tournament", tournament: @tournament %>
+    <%= render "tournament", tournament: @tournament, animate: true %>
   <% end %>
 <% end %>
