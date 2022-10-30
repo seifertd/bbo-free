@@ -1,4 +1,5 @@
-<tr>
+<% animate ||= false -%>
+<tr id="<%=dom_id(tournament)%>_row" <% if animate -%>class="animate-pulse-bg-once from-transparent to-green-600"<% end -%>>
   <td class="text-left py-3 px-4">
     <%= l tournament.tourney_date %>
   </td>

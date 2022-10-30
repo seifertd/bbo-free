@@ -9,20 +9,27 @@ class TournamentsController < ApplicationController
 
   def create
     parser = BboParser.new(params[:tournament_results_html])
-    @tournament, entry, new_tourney = parser.parse
-    if new_tourney
-      flash[:success] = "Entry #{entry.player} was recorded!"
+    @tournament, entry, @new_tourney = parser.parse
+    if @new_tourney
+      flash.now[:success] = "Entry #{entry.player} was recorded!"
     else
-      flash[:info] = "Entry #{entry.player} was updated!"
+      flash.now[:info] = "Entry #{entry.player} was updated!"
     end
-    redirect_to action: 'index'
+    respond_to do |format|
+      format.turbo_stream
+      format.html do
+        if new_tourney
+          redirect_to action: 'index'
+        else
+          redirect_to action: 'index'
+        end
+      end
+    end
   rescue Exception => e
     Rails.logger.error e
     flash.alert = e.message
     #redirect_to action: 'index'
     raise e
   end
-
-  private
 
 end
