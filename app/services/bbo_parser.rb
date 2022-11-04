@@ -51,7 +51,6 @@ class BboParser
           #  gsub("hv_popuplin('","").gsub("')", ""))
           board.lin_url = movie_anchors[1]['href']
           board.traveller_url = row.css("td.traveller a").first['href'];
-          board.save!
         end
         row_count += 1
       end
