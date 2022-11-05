@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   def index
-    @tournaments = Tournament.all.order(tourney_date: :desc)
+    @tournaments = Tournament.all.order(tourney_date: :desc).limit(10)
   end
 
   def show
