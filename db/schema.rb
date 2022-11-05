@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_21_074100) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_04_234735) do
   create_table "boards", force: :cascade do |t|
     t.integer "entry_id", null: false
     t.integer "number"
@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_074100) do
     t.datetime "updated_at", null: false
     t.date "tourney_date"
     t.string "name", limit: 256
+    t.integer "entries_count"
   end
 
   add_foreign_key "boards", "entries"

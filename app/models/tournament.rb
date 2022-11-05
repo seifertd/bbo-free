@@ -1,6 +1,6 @@
 class Tournament < ApplicationRecord
   attr_accessor :results
-  has_many :entries, inverse_of: :tournament
+  has_many :entries, inverse_of: :tournament, dependent: :destroy
 
   def short_guid
     guid[0,7]

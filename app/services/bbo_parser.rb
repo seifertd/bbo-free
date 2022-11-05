@@ -77,6 +77,7 @@ class BboParser
       board_str << "#{board}:#{lin.hands.to_s}|"
       board += 1
     end
+    Rails.logger.info "Creating SHA FROM #{board_str}"
     Digest::SHA2.hexdigest board_str
   end
 

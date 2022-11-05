@@ -14,6 +14,17 @@ class TournamentTest < ActiveSupport::TestCase
     assert tournament.entries.all? { |e| e.id.present? && e.boards.all? {|b| b.id.present?} }
   end
 
+  test "deleting tournament cleans up all children" do
+    tournament = build(:tournament)
+    tournament.entries << build(:entry)
+    tournament.entries.first.boards << build(:board)
+    tournament.save!
+    tournament.destroy
+    assert Board.count == 0
+    assert Entry.count == 0
+    assert Tournament.count == 0
+  end
+
   test "score recalcualtion" do
     tournament = build(:tournament)
     num_entries = 10
