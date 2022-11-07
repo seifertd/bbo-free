@@ -2,6 +2,12 @@ class Tournament < ApplicationRecord
   attr_accessor :results
   has_many :entries, inverse_of: :tournament, dependent: :destroy
 
+  def deals
+    Board.joins({entry: [:tournament]}).where(tournament: { id: self.id }).order(:entry_id, number: :asc).limit(8).map do |b|
+      Lin.create(b.lin_data)
+    end
+  end
+
   def short_guid
     guid[0,7]
   end
