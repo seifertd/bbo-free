@@ -1,25 +1,25 @@
 module TournamentHelper
   def pretty_hand(hand)
-    tag.div do
-      safe_join(
-        hand.split(//).collect do |char|
-          case char
+    tag.table do
+      rows = []
+      hand.scan /([SHDC]{1})([^SHDC]*)/ do |suit, cards|
+        rows << tag.tr do
+          cols = []
+          case suit
           when 'S'
-            tag.span('&spades;'.html_safe, class: 'suit text-black-900')
+            cols << tag.td('&spades;'.html_safe, class: 'suit text-black-900')
           when 'C'
-            tag.br +
-              tag.span('&clubs;'.html_safe, class: 'suit text-black-900')
+            cols << tag.td('&clubs;'.html_safe, class: 'suit text-black-900')
           when 'H'
-            tag.br +
-              tag.span('&hearts;'.html_safe, class: 'suit text-xs text-red-900')
+            cols << tag.td('&hearts;'.html_safe, class: 'suit text-xs text-red-900')
           when 'D'
-            tag.br + 
-              tag.span('&diams;'.html_safe, class: 'suit text-red-900')
-          else
-            char
+            cols << tag.td('&diams;'.html_safe, class: 'suit text-red-900')
           end
+          cols << tag.td(cards.reverse)
+          safe_join cols
         end
-      )
+      end
+      safe_join rows
     end
   end
 end
