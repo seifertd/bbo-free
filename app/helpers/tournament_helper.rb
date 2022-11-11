@@ -7,13 +7,13 @@ module TournamentHelper
           cols = []
           case suit
           when 'S'
-            cols << tag.td('&spades;'.html_safe, class: 'suit text-black-900')
+            cols << tag.td('&spades;'.html_safe, class: 'suit text-black-900 text-center')
           when 'C'
-            cols << tag.td('&clubs;'.html_safe, class: 'suit text-black-900')
+            cols << tag.td('&clubs;'.html_safe, class: 'suit text-black-900 text-center')
           when 'H'
-            cols << tag.td('&hearts;'.html_safe, class: 'suit text-xs text-red-900')
+            cols << tag.td('&hearts;'.html_safe, class: 'suit text-xs text-red-900 text-center')
           when 'D'
-            cols << tag.td('&diams;'.html_safe, class: 'suit text-red-900')
+            cols << tag.td('&diams;'.html_safe, class: 'suit text-red-900 text-center')
           end
           cols << tag.td(cards.reverse)
           safe_join cols
