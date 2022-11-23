@@ -27,7 +27,9 @@
     <main class="container mx-lg px-5 flex">
       <div class="max-w mx-auto">
         <%= render partial: "/layouts/notices" %>
-        <%= yield %>
+        <div class="min-w-full w-max" id="main-content">
+          <%= yield %>
+        </div>
       </div>
     </main>
   </body>

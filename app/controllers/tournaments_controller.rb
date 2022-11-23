@@ -5,6 +5,10 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = Tournament.find(params[:id])
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
   end
 
   def create
