@@ -4,7 +4,7 @@
     <%= l tournament.tourney_date %>
   </td>
   <td class="text-left py-3 px-4">
-    <%= link_to tournament.short_guid, tournament, class: 'hyperlink', data: { "turbo-stream": 'true'} %>
+    <%= link_to tournament.short_guid, tournament, class: 'hyperlink', data: { 'turbo-stream': 'true', 'turbo-action': 'advance'} %>
   </td>
   <td class="text-left py-3 px-4">
     <%= tournament.name %>

@@ -1,4 +1,5 @@
 class TournamentsController < ApplicationController
+  before_action :clear_flash
   def index
     @tournaments = Tournament.all.order(tourney_date: :desc).limit(10)
   end
@@ -34,6 +35,11 @@ class TournamentsController < ApplicationController
     flash.alert = e.message
     #redirect_to action: 'index'
     raise e
+  end
+
+private
+  def clear_flash
+    flash.discard
   end
 
 end
