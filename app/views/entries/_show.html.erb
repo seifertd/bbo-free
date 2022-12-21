@@ -1,0 +1,41 @@
+  <h2>Tournament <%=@entry.tournament.name%> (<%=@entry.tournament.short_guid%>): <%=@entry.player%></h2>
+  <div class="py-1 min-w-full w-max">
+    <div class="shadow overflow-hidden rounded border-b border-gray-200 min-w-full w-max">
+      <table class="min-w-full bg-white w-max">
+        <thead class="bg-gray-800 text-white">
+          <tr>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              No.
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Time
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              North
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              South
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              East
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              West
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Result
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Points
+            </th>
+            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">
+              Score
+            </th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <%= render @entry.boards %>
+        </tbody>
+      </table>
+    </div>
+  </div>

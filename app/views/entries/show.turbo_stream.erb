@@ -1,0 +1,6 @@
+<%= turbo_stream.replace 'notices' do %>
+ <!-- nada --> 
+<% end %>
+<%= turbo_stream.update 'main-content' do %>
+  <%= render 'show' %>
+<% end %>
