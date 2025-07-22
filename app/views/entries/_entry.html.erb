@@ -1,6 +1,6 @@
 <tr>
   <td class="text-left py-3 px-4">
-    <%= link_to entry.player, entry, class: 'hyperlink', data: { 'turbo-stream': 'true', 'turbo-action': 'advance' } %>
+    <%= link_to entry.player, entry, class: 'hyperlink', data: { 'turbo': false, 'turbo-stream': 'true', 'turbo-action': 'advance' } %>
   </td>
   <td class="text-left py-3 px-4">
     <%= l entry.played_at %>
