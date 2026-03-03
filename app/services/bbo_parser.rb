@@ -71,7 +71,7 @@ class BboParser
   def parse_tourney_guid
     # Get the hands to create a tournament unique identifier
     board = 1
-    board_str = ""
+    board_str = +""
     @html.css("html body td.movie a[onclick]").each do |elem|
       lin = Lin.create(lin_from_anchor(elem))
       board_str << "#{board}:#{lin.hands.to_s}|"

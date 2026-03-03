@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-pulse-bg-once: pulse-bg-once 3s ease-in forwards;
+}
+
+@keyframes pulse-bg-once {
+  0% { background-color: var(--tw-gradient-from); }
+  50% { background-color: var(--tw-gradient-to); }
+  100% { background-color: var(--tw-gradient-from); }
+}
+
+.hyperlink {
+  @apply text-blue-600
+}
+
+.hyperlink:hover {
+  @apply underline text-blue-800
+}
+
+.hyperlink:visited {
+  @apply text-purple-600
+}
