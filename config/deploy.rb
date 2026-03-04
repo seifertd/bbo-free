@@ -9,7 +9,7 @@ set :tmp_dir, "/tmp"
 set :branch, ENV['BRANCH'] || 'main'
 
 # rvm
-set :rvm_ruby_version, "ruby-3.3.10"
+set :rvm_ruby_version, "ruby-3.3.10@bbo-free"
 set :rvm_type, :system
 
 set :log_level, :debug
