@@ -2,7 +2,7 @@ require "test_helper"
 
 class BboParserTest < ActiveSupport::TestCase
   def setup
-    @tourney_html = File.read(File.join(Rails.root, 'test', 'data', 'new_tourney.html'))
+    @tourney_html = File.read(File.join(Rails.root, "test", "data", "new_tourney.html"))
   end
   def test_can_parse_new_tournament
     parser = BboParser.new(@tourney_html)

@@ -1,6 +1,3 @@
-# config valid for current version and patch releases of Capistrano
-lock "~> 3.17.1"
-
 set :application, "bbo-free"
 set :repo_url, "git@github.com:seifertd/bbo-free.git"
 set :user, "doug"
@@ -9,15 +6,13 @@ set :use_sudo, false
 set :tmp_dir, "/tmp"
 
 # Default branch is :master
-set :branch, ENV['BRANCH'] || 'main'
+set :branch, ENV["BRANCH"] || "main"
 
 # rvm
-set :rvm_ruby_version, "ruby-3.1.1"
+set :rvm_ruby_version, "ruby-3.3.10@bbo-free"
 set :rvm_type, :system
 
 set :log_level, :debug
-
-set :passenger_restart_with_touch, true
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
@@ -33,7 +28,7 @@ set :passenger_restart_with_touch, true
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, 'config/database.yml', 'config/master.key', 'config/secrets.yml', 'db/production.sqlite3'
+append :linked_files, "config/database.yml", "config/master.key", "config/credentials.yml.enc", "db/production.sqlite3"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/assets"

@@ -7,7 +7,7 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-server "das", user: "doug", roles: %w{app db web}
+server "das", user: "doug", roles: %w[app db web]
 set :deploy_to, "/home/doug/webapps/bbo-free/production"
 
 # role-based syntax
