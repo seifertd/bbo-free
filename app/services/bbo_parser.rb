@@ -12,7 +12,7 @@ class BboParser
       @html.xpath("/html/body//tr").each do |row|
         if row_count == 1
           tourny_info = row.xpath("th").first
-          player, player_guid = tourny_info.text.split(":").last.split("-")[0,2]
+          player, player_guid = tourny_info.text.split(":").last.split("-")[0, 2]
         elsif row_count == 2
           played_date = Date.parse(row.xpath("th").first.text)
           tournament = Tournament.where(guid: tourney_guid).first_or_initialize
@@ -22,7 +22,7 @@ class BboParser
           entry.rank = row.css("td.tourneyPlace").first.text.to_i
           entry.score = row.css("td.tourneyScore").first.text.to_f
           tournament.name = row.css("td.tourneyName a").first.text
-          if tournament.name.start_with? 'Weekly Free'
+          if tournament.name.start_with? "Weekly Free"
             tournament.tourney_date =
               entry.played_at.friday? ? entry.played_at : entry.played_at.prev_occurring(:friday)
           else
@@ -44,13 +44,13 @@ class BboParser
             board.points = score_cells.first.text.to_i
             board.score = score_cells.last.text.to_f
           end
-          movie_anchors = row.css("td.movie a");
-          board.movie_url = movie_anchors[0]['href']
+          movie_anchors = row.css("td.movie a")
+          board.movie_url = movie_anchors[0]["href"]
           board.lin_data = lin_from_anchor(movie_anchors[0])
-          #board.lin_data = CGI.unescape(movie_anchors[0]['onclick'].split(';').first.
+          # board.lin_data = CGI.unescape(movie_anchors[0]['onclick'].split(';').first.
           #  gsub("hv_popuplin('","").gsub("')", ""))
-          board.lin_url = movie_anchors[1]['href']
-          board.traveller_url = row.css("td.traveller a").first['href'];
+          board.lin_url = movie_anchors[1]["href"]
+          board.traveller_url = row.css("td.traveller a").first["href"]
         end
         row_count += 1
       end
@@ -65,7 +65,7 @@ class BboParser
         tournament.recalculate!
       end
     end
-    [tournament, entry, new_tourney]
+    [ tournament, entry, new_tourney ]
   end
 
   def parse_tourney_guid
@@ -74,17 +74,16 @@ class BboParser
     board_str = +""
     @html.css("html body td.movie a[onclick]").each do |elem|
       lin = Lin.create(lin_from_anchor(elem))
-      board_str << "#{board}:#{lin.hands.to_s}|"
+      board_str << "#{board}:#{lin.hands}|"
       board += 1
     end
     Rails.logger.info "Creating SHA FROM #{board_str}"
     Digest::SHA2.hexdigest board_str
   end
 
-  private 
+  private
 
   def lin_from_anchor(a)
-    CGI.unescape(a['onclick'].split(';').first.gsub("hv_popuplin('","").gsub("')", ""))
+    CGI.unescape(a["onclick"].split(";").first.gsub("hv_popuplin('", "").gsub("')", ""))
   end
-
 end

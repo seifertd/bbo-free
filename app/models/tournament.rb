@@ -3,13 +3,13 @@ class Tournament < ApplicationRecord
   has_many :entries, inverse_of: :tournament, dependent: :destroy
 
   def deals
-    Board.joins({entry: [:tournament]}).where(tournament: { id: self.id }).order(:entry_id, number: :asc).limit(8).map do |b|
+    Board.joins({ entry: [ :tournament ] }).where(tournament: { id: self.id }).order(:entry_id, number: :asc).limit(8).map do |b|
       Lin.create(b.lin_data)
     end
   end
 
   def short_guid
-    guid[0,7]
+    guid[0, 7]
   end
 
   def recalculate!
@@ -20,7 +20,7 @@ class Tournament < ApplicationRecord
       boards.each.with_index do |board, b_idx|
         points = entries.map.with_index do |entry, e_idx|
           board_entry = entry.boards[b_idx]
-          [board_entry.points, e_idx]
+          [ board_entry.points, e_idx ]
         end.sort_by do |tuple|
           -tuple[0]
         end
@@ -28,7 +28,7 @@ class Tournament < ApplicationRecord
           if tuple.size == 3
             next
           end
-          memo = [place, points.size - place - 1, (points.size - place - 1) * 2.0 / max_score * 100.0 ]
+          memo = [ place, points.size - place - 1, (points.size - place - 1) * 2.0 / max_score * 100.0 ]
           tuple << memo
           next_ind = place + 1
           while next_ind < points.size && tuple[0] == points[next_ind][0]
@@ -43,7 +43,7 @@ class Tournament < ApplicationRecord
           if b_idx == 0
             entries[tuple[1]].score = tuple[2][2]
           else
-            entries[tuple[1]].score = ( entries[tuple[1]].score * b_idx + tuple[2][2] ) / (b_idx + 1)
+            entries[tuple[1]].score = (entries[tuple[1]].score * b_idx + tuple[2][2]) / (b_idx + 1)
           end
         end
       end

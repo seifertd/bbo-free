@@ -24,16 +24,16 @@ class TournamentsController < ApplicationController
       format.turbo_stream
       format.html do
         if new_tourney
-          redirect_to action: 'index'
+          redirect_to action: "index"
         else
-          redirect_to action: 'index'
+          redirect_to action: "index"
         end
       end
     end
   rescue Exception => e
     Rails.logger.error e
     flash.alert = e.message
-    #redirect_to action: 'index'
+    # redirect_to action: 'index'
     raise e
   end
 
@@ -41,5 +41,4 @@ private
   def clear_flash
     flash.discard
   end
-
 end

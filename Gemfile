@@ -54,17 +54,21 @@ group :development, :test do
   # Additional deps
   gem "factory_bot_rails"
   gem "faker"
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
+  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  #Deployment
+  # Deployment
   gem "capistrano"
   gem "capistrano-rails"
   gem "capistrano-rvm"
-  gem 'foreman'
+  gem "foreman"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

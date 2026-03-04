@@ -6,7 +6,7 @@ set :use_sudo, false
 set :tmp_dir, "/tmp"
 
 # Default branch is :master
-set :branch, ENV['BRANCH'] || 'main'
+set :branch, ENV["BRANCH"] || "main"
 
 # rvm
 set :rvm_ruby_version, "ruby-3.3.10@bbo-free"
@@ -28,7 +28,7 @@ set :log_level, :debug
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, 'config/database.yml', 'config/master.key', 'config/credentials.yml.enc', 'db/production.sqlite3'
+append :linked_files, "config/database.yml", "config/master.key", "config/credentials.yml.enc", "db/production.sqlite3"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/assets"
