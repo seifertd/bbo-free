@@ -12,6 +12,22 @@ set :branch, ENV["BRANCH"] || "main"
 set :rvm_ruby_version, "ruby-3.4.9@bbo-free"
 set :rvm_type, :system
 
+# capistrano-rvm only routes commands through an existing ruby@gemset; it does
+# not create the gemset. Ensure it exists before bundling (idempotent).
+namespace :rvm do
+  desc "Create the RVM gemset if it does not yet exist"
+  task :create_gemset do
+    on roles(fetch(:rvm_roles, :all)) do
+      version, gemset = fetch(:rvm_ruby_version).sub(/\Aruby-/, "").split("@")
+      next unless gemset
+      rvm = "#{fetch(:rvm_path)}/bin/rvm"
+      execute rvm, version, "do", rvm, "gemset", "create", gemset
+    end
+  end
+end
+
+before "bundler:install", "rvm:create_gemset"
+
 set :log_level, :debug
 
 # Default deploy_to directory is /var/www/my_app_name
