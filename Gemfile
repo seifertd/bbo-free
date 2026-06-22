@@ -83,6 +83,6 @@ group :test do
   gem "selenium-webdriver", "~> 4.45.0"
 end
 
-gem "tailwindcss-rails", "~> 4.0"
+gem "tailwindcss-rails", "~> 4.6"
 
 gem "tsort", "~> 0.2.0"
