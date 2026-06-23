@@ -69,6 +69,9 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rvm"
   gem "foreman"
+  # Let net-ssh (via Capistrano) authenticate with ed25519 keys
+  gem "ed25519", "~> 1.3"
+  gem "bcrypt_pbkdf", "~> 1.1"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

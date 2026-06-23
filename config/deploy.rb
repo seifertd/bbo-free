@@ -8,12 +8,13 @@ set :tmp_dir, "/tmp"
 # Default branch is :master
 set :branch, ENV["BRANCH"] || "main"
 
-# rvm
-set :rvm_ruby_version, "ruby-3.4.9@bbo-free"
+# rvm — derive the ruby@gemset from .ruby-version + .ruby-gemset so there is a
+# single source of truth shared with local dev.
+set :rvm_ruby_version, "ruby-#{File.read('.ruby-version').strip}@#{File.read('.ruby-gemset').strip}"
 set :rvm_type, :system
 
 # capistrano-rvm only routes commands through an existing ruby@gemset; it does
-# not create the gemset. Ensure it exists before bundling (idempotent).
+# not create the gemset. Ensure it exists (idempotent).
 namespace :rvm do
   desc "Create the RVM gemset if it does not yet exist"
   task :create_gemset do
@@ -26,7 +27,11 @@ namespace :rvm do
   end
 end
 
-before "bundler:install", "rvm:create_gemset"
+# Must run after rvm:hook (which sets :rvm_path) but before rvm:check, which on a
+# debug log_level runs `ruby --version` through the ruby@gemset and would fail if
+# the gemset is missing. Both rvm:hook and rvm:check fire right after the stage
+# loads, long before bundler:install — so hooking there is too late.
+after "rvm:hook", "rvm:create_gemset"
 
 set :log_level, :debug
 

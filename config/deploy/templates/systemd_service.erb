@@ -1,0 +1,18 @@
+# Managed by Capistrano (deploy:install_systemd_unit). Do not edit on the server;
+# edit config/deploy/templates/systemd_service.erb and redeploy instead.
+[Unit]
+Description=Rails server for <%= application %> app
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=<%= working_directory %>
+Environment="RAILS_ENV=<%= rails_env %>"
+ExecStart=<%= wrapper_bin %> exec ./bin/rails server -p <%= app_port %>
+Restart=always
+ExecReload=/bin/kill -USR1 $MAINPID
+KillMode=mixed
+TimeoutStopSec=15
+
+[Install]
+WantedBy=default.target
