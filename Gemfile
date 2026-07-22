@@ -24,9 +24,6 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -53,7 +50,6 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   # Additional deps
   gem "factory_bot_rails"
-  gem "faker"
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
@@ -81,5 +77,3 @@ group :development do
 end
 
 gem "tailwindcss-rails", "~> 4.6"
-
-gem "tsort", "~> 0.2.0"
