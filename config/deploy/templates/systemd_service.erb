@@ -8,7 +8,7 @@ After=network.target
 Type=simple
 WorkingDirectory=<%= working_directory %>
 Environment="RAILS_ENV=<%= rails_env %>"
-ExecStart=<%= wrapper_bin %> exec ./bin/rails server -p <%= app_port %>
+ExecStart=<%= wrapper_bin %> exec ./bin/rails server -b 127.0.0.1 -p <%= app_port %>
 Restart=always
 ExecReload=/bin/kill -USR1 $MAINPID
 KillMode=mixed
